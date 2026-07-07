@@ -557,7 +557,7 @@ O participante será avaliado considerando:
 
 # Prazo
 
-O prazo para desenvolvimento e entrega será de **dois dias**, contados a partir do recebimento do teste.
+O prazo para desenvolvimento e entrega será de **dois dias e meio**, contados a partir do recebimento do teste.
 
 O participante deverá entregar o que foi concluído dentro do prazo, mesmo que alguma funcionalidade não tenha sido finalizada.
 
