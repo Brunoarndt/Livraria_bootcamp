@@ -28,6 +28,9 @@ Thumbs.db
 *.njsproj
 *.sln
 
+# Arquivos locais
+Progresso.md
+
 # Docker
 *.pid
 
