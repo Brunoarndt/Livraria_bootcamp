@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Livro {
+  id            Int      @id @default(autoincrement())
+  titulo        String
+  isbn          String   @unique
+  preco         Decimal  @db.Decimal(10, 2)
+  quantidade    Int      @default(0)
+  ativo         Boolean  @default(true) // inativação lógica (RN08)
+
+  autorId       Int
+  autor         Autor    @relation(fields: [autorId], references: [id])
+
+  categoriaId   Int
+  categoria     Categoria @relation(fields: [categoriaId], references: [id])
+
+  criadoEm      DateTime @default(now())
+  atualizadoEm  DateTime @updatedAt
+
+  @@map("livros")
+}
+
+model Autor {
+  id       Int     @id @default(autoincrement())
+  nome     String
+  livros   Livro[]
+
+  @@map("autores")
+}
+
+model Categoria {
+  id       Int     @id @default(autoincrement())
+  nome     String
+  livros   Livro[]
+
+  @@map("categorias")
+}
