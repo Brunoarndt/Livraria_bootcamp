@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import livrosRoutes from './routes/livros.routes.js'
+import autoresRoutes from './routes/autores.routes.js'
 
 dotenv.config()
 
@@ -16,6 +17,7 @@ app.get('/health', (req, res) => {
 })
 
 app.use('/livros', livrosRoutes)
+app.use('/autores', autoresRoutes)
 
 // Middleware global de erro 
 app.use((err, req, res, next) => {
