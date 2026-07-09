@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import api from '../services/api.js'
+import { useToastStore } from './toast.js'
 
 export const useAutoresStore = defineStore('autores', () => {
   const autores = ref([])
@@ -15,19 +16,21 @@ export const useAutoresStore = defineStore('autores', () => {
       autores.value = data
     } catch (e) {
       erro.value = 'Não foi possível carregar os autores.'
+      useToastStore().erro(erro.value)
     } finally {
       carregando.value = false
     }
   }
 
   async function criarAutor(nome) {
-    erro.value = null
     try {
       const { data } = await api.post('/autores', { nome })
       autores.value.push(data.autor)
+      useToastStore().sucesso(data.mensagem)
       return data.autor
     } catch (e) {
-      erro.value = e.response?.data?.mensagens?.[0] ?? 'Não foi possível cadastrar o autor.'
+      const mensagem = e.response?.data?.mensagens?.[0] ?? 'Não foi possível cadastrar o autor.'
+      useToastStore().erro(mensagem)
       throw e
     }
   }

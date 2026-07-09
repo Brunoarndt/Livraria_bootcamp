@@ -4,9 +4,7 @@ defineProps({
   categorias: { type: Array, default: () => [] },
 })
 
-// defineModel cria automaticamente o par prop+emit para v-model.
-// É o equivalente Vue de um input controlado do React, mas sem escrever
-// :value e @input manualmente — o v-model do componente pai já sincroniza.
+// defineModel cria automaticamente o par prop+emit para v-model, o equivalente do input controlado do react, mas bem mais facil
 const busca = defineModel('busca', { default: '' })
 const autorId = defineModel('autorId', { default: '' })
 const categoriaId = defineModel('categoriaId', { default: '' })

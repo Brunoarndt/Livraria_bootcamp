@@ -1,16 +1,19 @@
 <script setup>
 import { reactive, watch } from 'vue'
 
+// praticamente igual definir as props do componente react mas aqui também dá pra tipar e colocar valor padrão.
 const props = defineProps({
   aberto: { type: Boolean, default: false },
-  livro: { type: Object, default: null }, // null = modo criação, objeto = modo edição
+  livro: { type: Object, default: null }, 
   autores: { type: Array, default: () => [] },
   categorias: { type: Array, default: () => [] },
   erros: { type: Array, default: () => [] },
 })
 
+// equivalente ao callback que o componente pai passa no react, mas ao invés de receber onSalvar e onFechar como props, o componente emite eventos e o pai escuta
 const emit = defineEmits(['salvar', 'fechar'])
 
+// parecido com o useState contendo todo o formulário, mas como é reactive não precisa fazer setState, só altera as propriedades
 const form = reactive({
   titulo: '',
   isbn: '',
@@ -29,7 +32,7 @@ function resetarFormulario() {
   form.categoriaId = props.livro?.categoriaId ?? props.livro?.categoria?.id ?? ''
 }
 
-// Sempre que o modal abrir (seja pra criar ou editar), sincroniza o form com os dados recebidos.
+// parecido com um useEffect, sempre que o modal abre sincroniza o form com os dados recebidos
 watch(() => props.aberto, (estaAberto) => {
   if (estaAberto) resetarFormulario()
 })

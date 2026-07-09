@@ -5,6 +5,7 @@ import SimpleEntityManager from '../components/common/SimpleEntityManager.vue'
 
 const autoresStore = useAutoresStore()
 
+//// equivalente ao useEffect do react, executa uma vez só quando o componente é montado
 onMounted(() => {
   autoresStore.buscarAutores()
 })

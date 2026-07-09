@@ -18,7 +18,7 @@ const categoriaId = ref('')
 const buscaComDebounce = useDebounce(busca, 400)
 
 const modalAberto = ref(false)
-const livroSelecionado = ref(null) // null = criando, objeto = editando
+const livroSelecionado = ref(null) 
 const errosFormulario = ref([])
 
 function buscar() {
@@ -29,9 +29,7 @@ function buscar() {
   })
 }
 
-// Refaz a busca sempre que busca (com debounce) ou filtros mudarem —
-// equivalente a um useEffect com array de dependências no React,
-// mas sem precisar listar as dependências manualmente.
+// refaz a busca sempre que busca (com debounce), equivalente ao useEffect com array de dependencias no react, mas sem precisar listar manualmente
 watch([buscaComDebounce, autorId, categoriaId], buscar)
 
 onMounted(() => {
@@ -69,8 +67,8 @@ async function inativarLivro(livro) {
   if (!confirm(`Remover "${livro.titulo}"?`)) return
   try {
     await livrosStore.inativarLivro(livro.id)
-  } catch (erro) {
-    livrosStore.erro = 'Não foi possível remover o livro.'
+  } catch {
+    // erro já notifica pelo toast
   }
 }
 </script>
