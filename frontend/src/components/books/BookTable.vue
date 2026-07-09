@@ -8,53 +8,53 @@ const emit = defineEmits(['editar', 'inativar'])
 </script>
 
 <template>
-  <div class="overflow-x-auto rounded-md border border-gray-200 bg-white">
+  <div class="overflow-x-auto rounded-md border border-primary/10 bg-secondary/20">
     <table class="w-full text-left text-sm">
-      <thead class="border-b border-gray-200 bg-gray-50 text-xs uppercase tracking-wide text-gray-500">
+      <thead class="border-b border-primary/10">
         <tr>
-          <th class="px-4 py-3 font-medium">Título</th>
-          <th class="px-4 py-3 font-medium">ISBN</th>
-          <th class="px-4 py-3 font-medium">Autor</th>
-          <th class="px-4 py-3 font-medium">Categoria</th>
-          <th class="px-4 py-3 font-medium">Preço</th>
-          <th class="px-4 py-3 font-medium">Estoque</th>
-          <th class="px-4 py-3 font-medium text-right">Ações</th>
+          <th class="px-4 py-3 text-xs font-medium uppercase tracking-wide text-primary/50">Título</th>
+          <th class="px-4 py-3 text-xs font-medium uppercase tracking-wide text-primary/50">ISBN</th>
+          <th class="px-4 py-3 text-xs font-medium uppercase tracking-wide text-primary/50">Autor</th>
+          <th class="px-4 py-3 text-xs font-medium uppercase tracking-wide text-primary/50">Categoria</th>
+          <th class="px-4 py-3 text-xs font-medium uppercase tracking-wide text-primary/50">Preço</th>
+          <th class="px-4 py-3 text-xs font-medium uppercase tracking-wide text-primary/50">Estoque</th>
+          <th class="px-4 py-3 text-right text-xs font-medium uppercase tracking-wide text-primary/50">Ações</th>
         </tr>
       </thead>
-      <tbody class="divide-y divide-gray-100">
+      <tbody class="divide-y divide-primary/5">
         <tr v-if="carregando">
-          <td colspan="7" class="px-4 py-8 text-center text-gray-400">
-            Carregando livros...
+          <td colspan="7" class="px-4 py-10 text-center text-sm text-ink/40">
+            Carregando o catálogo...
           </td>
         </tr>
 
         <tr v-else-if="livros.length === 0">
-          <td colspan="7" class="px-4 py-8 text-center text-gray-400">
-            Nenhum livro encontrado.
+          <td colspan="7" class="px-4 py-10 text-center text-sm text-ink/40">
+            Nenhum livro encontrado nesta coleção.
           </td>
         </tr>
 
-        <tr v-for="livro in livros" :key="livro.id" class="hover:bg-gray-50">
-          <td class="px-4 py-3 font-medium text-gray-900">{{ livro.titulo }}</td>
-          <td class="px-4 py-3 text-gray-500">{{ livro.isbn }}</td>
-          <td class="px-4 py-3 text-gray-500">{{ livro.autor.nome }}</td>
-          <td class="px-4 py-3 text-gray-500">{{ livro.categoria.nome }}</td>
-          <td class="px-4 py-3 text-gray-500">
+        <tr v-for="livro in livros" :key="livro.id" class="transition-colors hover:bg-secondary/50">
+          <td class="px-4 py-3 font-serif text-base text-primary">{{ livro.titulo }}</td>
+          <td class="px-4 py-3 text-ink/60">{{ livro.isbn }}</td>
+          <td class="px-4 py-3 text-ink/60">{{ livro.autor.nome }}</td>
+          <td class="px-4 py-3 text-ink/60">{{ livro.categoria.nome }}</td>
+          <td class="px-4 py-3 text-ink/60">
             {{ Number(livro.preco).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}
           </td>
-          <td class="px-4 py-3 text-gray-500">{{ livro.quantidade }}</td>
+          <td class="px-4 py-3 text-ink/60">{{ livro.quantidade }}</td>
           <td class="px-4 py-3">
-            <div class="flex justify-end gap-3">
+            <div class="flex justify-end gap-4 text-xs uppercase tracking-wide">
               <button
                 type="button"
-                class="text-sm text-gray-600 hover:text-gray-900"
+                class="text-primary/70 transition-colors hover:text-primary"
                 @click="emit('editar', livro)"
               >
                 Editar
               </button>
               <button
                 type="button"
-                class="text-sm text-red-500 hover:text-red-700"
+                class="text-red-700/70 transition-colors hover:text-red-700"
                 @click="emit('inativar', livro)"
               >
                 Remover

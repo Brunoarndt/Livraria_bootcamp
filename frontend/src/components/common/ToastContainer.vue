@@ -18,7 +18,7 @@ const toastStore = useToastStore()
           :key="toast.id"
           class="flex items-start justify-between gap-3 rounded-md border px-4 py-3 text-sm shadow-sm"
           :class="toast.tipo === 'sucesso'
-            ? 'border-green-200 bg-green-50 text-green-700'
+            ? 'border-primary/20 bg-secondary text-primary'
             : 'border-red-200 bg-red-50 text-red-700'"
         >
           <span>{{ toast.mensagem }}</span>
