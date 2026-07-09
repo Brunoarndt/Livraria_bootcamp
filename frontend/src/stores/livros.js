@@ -39,7 +39,7 @@ export const useLivrosStore = defineStore('livros', () => {
     return data
   }
 
-  async function removerLivro(id) {
+  async function inativarLivro(id) {
     const { data } = await api.delete(`/livros/${id}`)
     livros.value = livros.value.filter((livro) => livro.id !== id)
     return data
@@ -52,6 +52,6 @@ export const useLivrosStore = defineStore('livros', () => {
     buscarLivros,
     criarLivro,
     editarLivro,
-    removerLivro,
+    inativarLivro,
   }
 })
